@@ -12,7 +12,9 @@ Using the foundation of the Eisenhower matrix, there are 4 buckets called:
 
 Build instructions: 
 To run the project: 
-1) make clean
-2) python main.py
-3) make
+1) python app.py
+2) Open http://127.0.0.1:5000 in browser
+3) Add and delete tasks as preferred
+
+
 

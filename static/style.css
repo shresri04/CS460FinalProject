@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    font-family: 'Helvetica, sans-serif';
+    background-color: #caf7c6;
     margin: 0;
     padding: 20px;
     text-align: center;
@@ -26,7 +26,7 @@ input, select, button {
 }
 
 button {
-    background-color: #2563eb;
+    background-color: #036926;
     color: white;
     border: none;
     border-radius: 8px;
@@ -34,7 +34,7 @@ button {
 }
 
 button:hover {
-    background-color: #1e40af;
+    background-color: rgb(6, 64, 26);
 }
 
 .clear-btn {
@@ -54,12 +54,12 @@ button:hover {
 }
 
 .bucket {
-    background-color: white;
+    background-color: rgb(159, 199, 159);
     min-height: 250px;
     padding: 20px;
     border-radius: 12px;
     text-align: left;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(63, 87, 61, 0.1);
 }
 
 .bucket h2 {
