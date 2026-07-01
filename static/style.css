@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #222;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 8px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1e40af;
+}
+
+.clear-btn {
+    background-color: #dc2626;
+}
+
+.clear-btn:hover {
+    background-color: #991b1b;
+}
+
+.matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.bucket {
+    background-color: white;
+    min-height: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bucket h2 {
+    margin-bottom: 5px;
+}
+
+.bucket h3 {
+    margin-top: 0;
+    color: #555;
+}
+
+.bucket1 {
+    border-top: 8px solid #dc2626;
+}
+
+.bucket2 {
+    border-top: 8px solid #2563eb;
+}
+
+.bucket3 {
+    border-top: 8px solid #f59e0b;
+}
+
+.bucket4 {
+    border-top: 8px solid #16a34a;
+}
+
+li {
+    margin: 10px 0;
+    font-size: 18px;
+}

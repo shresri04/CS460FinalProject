@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eisenhower Task Manager</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Eisenhower Matrix Task Manager</h1>
+
+    <div class="form-container">
+        <input type="text" id="taskName" placeholder="Enter task name">
+
+        <select id="urgent">
+            <option value="true">Urgent</option>
+            <option value="false">Not Urgent</option>
+        </select>
+
+        <select id="important">
+            <option value="true">Important</option>
+            <option value="false">Not Important</option>
+        </select>
+
+        <select id="priority">
+            <option value="3">High Priority !!!</option>
+            <option value="2">Medium Priority !!</option>
+            <option value="1">Low Priority !</option>
+        </select>
+
+        <button onclick="addTask()">Add Task</button>
+        <button onclick="clearTasks()" class="clear-btn">Clear All</button>
+    </div>
+
+    <div class="matrix">
+        <div class="bucket bucket1">
+            <h2>Bucket 1</h2>
+            <h3>Urgent + Important</h3>
+            <ul id="bucket1"></ul>
+        </div>
+
+        <div class="bucket bucket2">
+            <h2>Bucket 2</h2>
+            <h3>Not Urgent + Important</h3>
+            <ul id="bucket2"></ul>
+        </div>
+
+        <div class="bucket bucket3">
+            <h2>Bucket 3</h2>
+            <h3>Urgent + Not Important</h3>
+            <ul id="bucket3"></ul>
+        </div>
+
+        <div class="bucket bucket4">
+            <h2>Bucket 4</h2>
+            <h3>Not Urgent + Not Important</h3>
+            <ul id="bucket4"></ul>
+        </div>
+    </div>
+
+    <script>
+        function prioritySymbols(priority) {
+            if (priority === 3) return "!!!";
+            if (priority === 2) return "!!";
+            return "!";
+        }
+
+        function displayBuckets(data) {
+            const bucketIds = ["bucket1", "bucket2", "bucket3", "bucket4"];
+
+            bucketIds.forEach(bucketId => {
+                const list = document.getElementById(bucketId);
+                list.innerHTML = "";
+
+                data[bucketId].forEach(task => {
+                    const item = document.createElement("li");
+                    item.textContent = `${task.name} ${prioritySymbols(task.priority)}`;
+                    list.appendChild(item);
+                });
+            });
+        }
+
+        function addTask() {
+            const taskName = document.getElementById("taskName").value;
+            const urgent = document.getElementById("urgent").value === "true";
+            const important = document.getElementById("important").value === "true";
+            const priority = document.getElementById("priority").value;
+
+            if (taskName.trim() === "") {
+                alert("Please enter a task name.");
+                return;
+            }
+
+            fetch("/add_task", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: taskName,
+                    urgent: urgent,
+                    important: important,
+                    priority: priority
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayBuckets(data);
+                document.getElementById("taskName").value = "";
+            });
+        }
+
+        function clearTasks() {
+            fetch("/clear_tasks", {
+                method: "POST"
+            })
+            .then(response => response.json())
+            .then(data => displayBuckets(data));
+        }
+
+        fetch("/get_tasks")
+            .then(response => response.json())
+            .then(data => displayBuckets(data));
+    </script>
+</body>
+</html>
